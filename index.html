@@ -113,7 +113,93 @@ header p { font-size: 0.8rem; color: rgba(255,255,255,0.75); }
     <div class="error-banner" id="errorBanner">Erro ao guardar. Verifica a ligação e tenta novamente.</div>
     <div class="name-field">
       <label class="field-label">O teu nome *</label>
-      <input type="text" class="field-input" id="voterName" placeholder="ex: Teresa Silva" oninput="updateBtn()">
+      <select class="field-input" id="voterName" onchange="updateBtn()">
+        <option value="">— Seleciona o teu nome —</option>
+        <option>Agostinho Leandro de Teixeira Fernandes</option>
+        <option>Ana Catarina da Costa Pereira Pinto</option>
+        <option>Ana de Freitas Oliveira</option>
+        <option>Ana RIta Carneiro Peixoto</option>
+        <option>André Filipe da Rocha Couto</option>
+        <option>André Manuel de Ribeiro Mesquita</option>
+        <option>Andreia Filipa Valada Pereira Artífice</option>
+        <option>Antoni Correia</option>
+        <option>Armando Nuno Martins Leitão</option>
+        <option>Carlos Eduardo Geraldes de Vasconcelos Miguel</option>
+        <option>César Filipe da Costa Dantas</option>
+        <option>Daniel Augusto da Costa Veiga Machado</option>
+        <option>Daniel Faria Gomes de Oliveira</option>
+        <option>Daniela Fernandes Machado</option>
+        <option>David José Araújo Borlido</option>
+        <option>Diogo Alberto Fernandes da Silva Borges</option>
+        <option>Diogo Filipe Fernandes Pereira</option>
+        <option>Duarte Enes Pereira</option>
+        <option>Eduardo Daniel Carneiro Rodrigues</option>
+        <option>Fábio António Mota Oliveira</option>
+        <option>Fábio Silva Costa</option>
+        <option>Fábio Teles Soares</option>
+        <option>Fernando José Almeida Sousa</option>
+        <option>Filipe António Couto da Silva</option>
+        <option>Francisco Rui Coimbra da Silva Carvalho</option>
+        <option>Gilberto Miguel Valadares Correia da Lage</option>
+        <option>Gonçalo da Costa Rocha Ferreira das Neves</option>
+        <option>Henrique Rolando do Vale Rodrigues</option>
+        <option>Inês Campos Costa da Silva Vieira</option>
+        <option>Isabel Cristina Coimbra Jesus</option>
+        <option>Isabel Maria Marrana Alves de Freitas</option>
+        <option>Joana Filipa Alves das Neves</option>
+        <option>Joao Daniel Dinis Neves</option>
+        <option>Joao Henrique Ramos Pereira</option>
+        <option>João José de Sousa Gomes Alves Ribeiro</option>
+        <option>João Lourenço Lopes Queirós</option>
+        <option>Jose Albertino Pinto Lordelo</option>
+        <option>José Alberto Matias da Costa</option>
+        <option>José Eduardo Almeida</option>
+        <option>José Lopes Ramos</option>
+        <option>José Miguel Carvalho Pinto</option>
+        <option>José Miguel Gomes Moreira Pêgo</option>
+        <option>José Paulo Martins Pinto Malheiro</option>
+        <option>José Pedro Martinho Queirós</option>
+        <option>Lécio Fernando dos Santos Ribeiro</option>
+        <option>Liliana Rodrigues Araújo Simões</option>
+        <option>Ludovic Macedo Vieira</option>
+        <option>Luis Dias da Rocha</option>
+        <option>Luís Filipe Passos Coelho Gonçalves</option>
+        <option>Luís Manuel Dias Amorim</option>
+        <option>Luis Manuel Pinto Pereira</option>
+        <option>Margarida de Almeida Campos Tavares</option>
+        <option>Mauricio Pinto Cerqueira Pereira</option>
+        <option>Mauro Miguel Parreira Vaz Trindade</option>
+        <option>Nuno Henrique Dias Rodrigues Pereira</option>
+        <option>Nuno Miguel Azevedo Dias Lima Delgado</option>
+        <option>Nuno Miguel da Silva Belo</option>
+        <option>Paulo Alexandre Mendonça Santos</option>
+        <option>Pedro Alexandre Caseiro da Cunha</option>
+        <option>Pedro Daniel Leite Antunes</option>
+        <option>Pedro Henrique Ramos Correia</option>
+        <option>Philippe André Carneiro Vaz</option>
+        <option>Ricardo Fragoso</option>
+        <option>Ricardo José Tavares Alves Rocha</option>
+        <option>Rui Filipe Caetano Marques</option>
+        <option>Rui Miguel Costa Oliveira</option>
+        <option>Samuel Sampaio Vieira</option>
+        <option>Sara I. Alves de Sousa Rebelo</option>
+        <option>Sílvia Madalena da Silva Peixoto</option>
+        <option>Silvia Pellegrino</option>
+        <option>Simão Ricardo Curval Ferreira</option>
+        <option>Sofia Emanuela Leite Cristóvão</option>
+        <option>Sónia da Silva Araújo</option>
+        <option>Sónia Maria Correia Dias</option>
+        <option>Sónia Maria Marques Rodrigues</option>
+        <option>Susana Cristina Rocha Bernardino</option>
+        <option>Teresa Ribeiro Torres</option>
+        <option>Thiago Chamusca de Azevedo</option>
+        <option>Tiago André de Jesus Constante</option>
+        <option>Tiago de Almeida Tavares</option>
+        <option>Tiago João da Silva Marques</option>
+        <option>Válter Augusto Leal Alves da Rocha</option>
+        <option>Vasco Cardoso Pereira</option>
+        <option>Vasco Manuel Ribeiro Pizarro</option>
+      </select>
     </div>
     <div id="electivesForm"></div>
     <div class="sel-count" id="selCount">Seleciona entre <b>5</b> e <b>6</b> electives</div>
