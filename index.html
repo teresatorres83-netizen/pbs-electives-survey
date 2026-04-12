@@ -316,7 +316,7 @@ function getVoteCounts() {
   const counts = {};
   ELECTIVES.forEach(e => counts[e.name] = 0);
   Object.values(allVotes).forEach(v => {
-    if (v.selections) v.selections.forEach(s => { if (counts[s] !== undefined) counts[s]++; });
+    if (v.selections) v.selections.forEach(s => { const t = s.trim(); if (counts[t] !== undefined) counts[t]++; });
   });
   return counts;
 }
