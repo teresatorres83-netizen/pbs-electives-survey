@@ -9,31 +9,31 @@
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { background: #f5f3ef; color: #1a1a2e; font-family: 'DM Sans', sans-serif; min-height: 100vh; }
- 
+
 header { background: #1a3a6e; color: #fff; padding: 1.25rem 1.5rem; }
 .pbs-label { font-size: 10px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: #c9a84c; margin-bottom: 4px; }
 header h1 { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 600; color: #fff; margin-bottom: 4px; }
 header p { font-size: 0.8rem; color: rgba(255,255,255,0.75); }
- 
+
 .counter-bar { background: #2952a3; padding: 0.6rem 1.5rem; display: flex; gap: 1.25rem; flex-wrap: wrap; align-items: center; }
 .counter-item { display: flex; align-items: center; gap: 6px; color: #fff; font-size: 0.8rem; }
 .counter-num { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 600; color: #c9a84c; }
 .live-dot { width: 7px; height: 7px; background: #22c55e; border-radius: 50%; display: inline-block; animation: pulse 2s infinite; }
 @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
 .live-ts { font-size: 0.72rem; color: rgba(255,255,255,0.65); }
- 
+
 .tabs { display: flex; background: #fff; border-bottom: 2px solid #ddd8d0; }
 .tab { flex: 1; padding: 0.85rem; text-align: center; font-size: 0.85rem; font-weight: 500; color: #6b7280; cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; background: #fff; }
 .tab.active { color: #1a3a6e; border-bottom-color: #1a3a6e; }
 .tab-pane { display: none; }
 .tab-pane.active { display: block; }
- 
+
 .wrap { padding: 1.25rem; background: #f5f3ef; }
 .field-label { display: block; font-size: 0.75rem; font-weight: 500; color: #6b7280; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
 .field-input { width: 100%; padding: 0.65rem 0.75rem; border: 1px solid #ddd8d0; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: #1a1a2e; background: #fff; outline: none; }
 .field-input:focus { border-color: #1a3a6e; }
 .name-field { margin-bottom: 1.25rem; }
- 
+
 .area-label { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #c9a84c; padding: 0.8rem 0 0.35rem; border-top: 1px solid #e8e4dc; margin-top: 8px; }
 .area-label.first { border-top: none; margin-top: 0; padding-top: 0; }
 .opt { display: flex; align-items: flex-start; gap: 8px; padding: 0.5rem 0.35rem; cursor: pointer; border-radius: 6px; }
@@ -41,15 +41,15 @@ header p { font-size: 0.8rem; color: rgba(255,255,255,0.75); }
 .opt input[type=checkbox] { margin-top: 3px; accent-color: #1a3a6e; width: 16px; height: 16px; flex-shrink: 0; cursor: pointer; }
 .opt-name { font-size: 0.88rem; line-height: 1.3; color: #1a1a2e; }
 .opt-fmt { font-size: 0.7rem; color: #6b7280; margin-top: 2px; }
- 
+
 .sel-count { margin: 1rem 0 0.85rem; padding: 0.65rem; border-radius: 8px; background: #e8e4dc; font-size: 0.83rem; color: #6b7280; text-align: center; }
 .sel-count b { color: #1a3a6e; }
- 
+
 .submit-btn { width: 100%; padding: 0.9rem; background: #1a3a6e; color: #fff; border: none; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 0.92rem; font-weight: 500; cursor: pointer; }
 .submit-btn:disabled { background: #9ca3af; cursor: not-allowed; }
 .submit-note { font-size: 0.72rem; color: #6b7280; text-align: center; margin-top: 8px; }
 .error-banner { background: #fee2e8; color: #e8335a; padding: 0.65rem 0.85rem; border-radius: 8px; font-size: 0.8rem; margin-bottom: 1rem; display: none; }
- 
+
 .success-wrap { padding: 2.5rem 1.5rem; text-align: center; background: #f5f3ef; }
 .success-icon { width: 56px; height: 56px; background: #dcfce7; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 1.5rem; }
 .success-wrap h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #1a3a6e; margin-bottom: 8px; }
@@ -57,7 +57,7 @@ header p { font-size: 0.8rem; color: rgba(255,255,255,0.75); }
 .vote-item { font-size: 0.8rem; color: #1a1a2e; padding: 0.22rem 0; display: flex; align-items: center; gap: 6px; text-align: left; }
 .vote-item::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: #c9a84c; flex-shrink: 0; }
 .again-btn { margin-top: 1.25rem; padding: 0.55rem 1.5rem; background: transparent; border: 1px solid #ddd8d0; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 0.83rem; color: #6b7280; cursor: pointer; }
- 
+
 .res-area { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: #c9a84c; padding: 0.85rem 0 0.3rem; border-top: 1px solid #e8e4dc; margin-top: 4px; }
 .res-area.first { border-top: none; padding-top: 0; margin-top: 0; }
 .res-row { margin: 0.4rem 0; }
@@ -70,7 +70,7 @@ header p { font-size: 0.8rem; color: rgba(255,255,255,0.75); }
 .opens-badge { font-size: 0.6rem; font-weight: 500; padding: 0.1rem 0.35rem; border-radius: 10px; background: #dcfce7; color: #2d7a4f; margin-left: 6px; }
 .empty-state { padding: 2.5rem 0; text-align: center; color: #6b7280; font-size: 0.85rem; }
 .loading-state { padding: 2rem 0; text-align: center; color: #6b7280; font-size: 0.85rem; }
- 
+
 .admin-btn { position: fixed; bottom: 20px; right: 20px; background: #1a3a6e; color: #fff; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 1rem; cursor: pointer; z-index: 50; box-shadow: 0 2px 8px rgba(0,0,0,0.25); }
 .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 200; display: flex; align-items: center; justify-content: center; padding: 1rem; }
 .modal { background: #fff; border-radius: 12px; padding: 1.75rem; width: 100%; max-width: 400px; }
@@ -90,24 +90,24 @@ header p { font-size: 0.8rem; color: rgba(255,255,255,0.75); }
 </style>
 </head>
 <body>
- 
+
 <header>
   <div class="pbs-label">Porto Business School · Executive MBA 2025/26</div>
   <h1>Escolha de Electives — Survey Prévio</h1>
   <p>Indica as tuas preferências. Mínimo 15 alunos para a elective abrir.</p>
 </header>
- 
+
 <div class="counter-bar">
   <div class="counter-item"><span class="counter-num" id="totalVotes">—</span><span>respostas</span></div>
   <div class="counter-item"><span class="counter-num" id="safeCount">—</span><span>com ≥15 votos</span></div>
   <div class="counter-item"><span class="live-dot"></span><span class="live-ts" id="lastUpdated">a carregar...</span></div>
 </div>
- 
+
 <div class="tabs">
   <div class="tab active" id="tab-btn-vote" onclick="showTab('vote')">📝 O meu voto</div>
   <div class="tab" id="tab-btn-results" onclick="showTab('results')">📊 Resultados</div>
 </div>
- 
+
 <div id="pane-vote" class="tab-pane active">
   <div class="wrap" id="formWrap">
     <div class="error-banner" id="errorBanner">Erro ao guardar. Verifica a ligação e tenta novamente.</div>
@@ -202,7 +202,7 @@ header p { font-size: 0.8rem; color: rgba(255,255,255,0.75); }
       </select>
     </div>
     <div id="electivesForm"></div>
-    <div class="sel-count" id="selCount">Seleciona entre <b>5</b> e <b>6</b> electives</div>
+    <div class="sel-count" id="selCount">Seleciona entre <b>5</b> e <b>7</b> electives</div>
     <button class="submit-btn" id="submitBtn" onclick="submitVote()" disabled>Submeter preferências</button>
     <p class="submit-note">Podes seleccionar entre 5 e 7 electives. Podes actualizar o teu voto submetendo novamente com o mesmo nome.</p>
   </div>
@@ -214,15 +214,15 @@ header p { font-size: 0.8rem; color: rgba(255,255,255,0.75); }
     <button class="again-btn" onclick="resetForm()">Alterar resposta</button>
   </div>
 </div>
- 
+
 <div id="pane-results" class="tab-pane">
   <div class="wrap" id="resultsBody">
     <div class="loading-state">A carregar resultados...</div>
   </div>
 </div>
- 
+
 <button class="admin-btn" onclick="openAdmin()">⚙</button>
- 
+
 <div class="overlay" id="adminOverlay" style="display:none">
   <div class="modal">
     <h3>Administração</h3>
@@ -242,12 +242,12 @@ header p { font-size: 0.8rem; color: rgba(255,255,255,0.75); }
     </div>
   </div>
 </div>
- 
+
 <script>
 const API_URL = 'https://script.google.com/macros/s/AKfycbzJWpe4eU63Mz7nFXHmbbsMNXcFmOEsDF5zFsFw1IN7RGhzGLYPD8KnJsdtE2-oIzO7Mg/exec';
 const THRESHOLD = 15;
 const ADMIN_PW = 'pbs2026';
- 
+
 const ELECTIVES = [
   { area: "Finance & Investments", name: "Private Equity and Venture Capital", format: "Presencial / Online" },
   { area: "Finance & Investments", name: "Blockchain & Fintech", format: "100% online" },
@@ -285,10 +285,10 @@ const ELECTIVES = [
   { area: "Leadership", name: "Cross Cultural Communication Management", format: "Hybrid" },
   { area: "Leadership", name: "ESG | Building Social Capital Through Diversity", format: "Hybrid" },
 ];
- 
+
 const AREAS = [...new Set(ELECTIVES.map(e => e.area))];
 let allVotes = {};
- 
+
 async function fetchVotes() {
   try {
     const r = await fetch(API_URL, { method: 'GET' });
@@ -303,7 +303,7 @@ async function fetchVotes() {
     document.getElementById('lastUpdated').textContent = 'erro de ligação';
   }
 }
- 
+
 async function postVote(payload) {
   const r = await fetch(API_URL, {
     method: 'POST',
@@ -311,7 +311,7 @@ async function postVote(payload) {
   });
   return r.text();
 }
- 
+
 function fixSelections(raw) {
   // The | separator inside ESG names (e.g. "ESG | ESG & Finance") causes incorrect splits.
   // We reconstruct by joining fragments that don't match any known elective name.
@@ -334,7 +334,7 @@ function fixSelections(raw) {
   }
   return fixed;
 }
- 
+
 function getVoteCounts() {
   const counts = {};
   ELECTIVES.forEach(e => counts[e.name] = 0);
@@ -346,7 +346,7 @@ function getVoteCounts() {
   });
   return counts;
 }
- 
+
 function updateCounters() {
   const total = Object.keys(allVotes).length;
   const counts = getVoteCounts();
@@ -354,7 +354,7 @@ function updateCounters() {
   document.getElementById('totalVotes').textContent = total;
   document.getElementById('safeCount').textContent = safe;
 }
- 
+
 function showTab(name) {
   document.getElementById('tab-btn-vote').classList.toggle('active', name === 'vote');
   document.getElementById('tab-btn-results').classList.toggle('active', name === 'results');
@@ -362,7 +362,7 @@ function showTab(name) {
   document.getElementById('pane-results').classList.toggle('active', name === 'results');
   if (name === 'results') { fetchVotes(); renderResults(); }
 }
- 
+
 function buildForm() {
   const c = document.getElementById('electivesForm');
   let html = '';
@@ -377,7 +377,7 @@ function buildForm() {
   });
   c.innerHTML = html;
 }
- 
+
 function updateCount() {
   const checked = document.querySelectorAll('#electivesForm input:checked');
   const n = checked.length;
@@ -386,27 +386,27 @@ function updateCount() {
   el.innerHTML = n >= 5 ? `<b>${n}</b> electives selecionadas ✓` : `Seleciona entre <b>5</b> e <b>7</b> electives (${n} selecionadas)`;
   updateBtn();
 }
- 
+
 function updateBtn() {
   const n = document.querySelectorAll('#electivesForm input:checked').length;
   const name = document.getElementById('voterName').value.trim();
   document.getElementById('submitBtn').disabled = !(n >= 5 && n <= 7 && name.length > 0);
 }
- 
+
 async function submitVote() {
   const checked = [...document.querySelectorAll('#electivesForm input:checked')].map(i => i.value);
   const name = document.getElementById('voterName').value.trim();
   if (checked.length < 5 || checked.length > 7 || !name) return;
- 
+
   const btn = document.getElementById('submitBtn');
   btn.disabled = true; btn.textContent = 'A guardar...';
   document.getElementById('errorBanner').style.display = 'none';
- 
+
   try {
     const key = name.toLowerCase().replace(/[^a-z0-9]/g, '_');
     await postVote({ key, name, selections: checked, ts: Date.now() });
     await fetchVotes();
- 
+
     document.getElementById('formWrap').style.display = 'none';
     document.getElementById('successWrap').style.display = 'block';
     document.getElementById('myVotesList').innerHTML =
@@ -416,25 +416,25 @@ async function submitVote() {
     btn.disabled = false; btn.textContent = 'Submeter preferências';
   }
 }
- 
+
 function resetForm() {
   document.getElementById('formWrap').style.display = 'block';
   document.getElementById('successWrap').style.display = 'none';
   document.getElementById('submitBtn').textContent = 'Submeter preferências';
   updateBtn();
 }
- 
+
 function renderResults() {
   const counts = getVoteCounts();
   const total = Object.keys(allVotes).length;
   const maxCount = Math.max(...Object.values(counts), THRESHOLD);
   const body = document.getElementById('resultsBody');
- 
+
   if (total === 0) {
     body.innerHTML = '<div class="empty-state">Ainda sem respostas.<br>Sê o primeiro a votar!</div>';
     return;
   }
- 
+
   let html = '';
   AREAS.forEach((area, ai) => {
     const items = ELECTIVES.filter(e => e.area === area)
@@ -457,7 +457,7 @@ function renderResults() {
   });
   body.innerHTML = html;
 }
- 
+
 function openAdmin() {
   document.getElementById('adminOverlay').style.display = 'flex';
   document.getElementById('lockScreen').style.display = 'block';
@@ -465,13 +465,13 @@ function openAdmin() {
   document.getElementById('pwInput').value = '';
   document.getElementById('adminErr').style.display = 'none';
 }
- 
+
 function closeAdmin() { document.getElementById('adminOverlay').style.display = 'none'; }
- 
+
 document.getElementById('adminOverlay').addEventListener('click', e => {
   if (e.target === document.getElementById('adminOverlay')) closeAdmin();
 });
- 
+
 function checkPw() {
   if (document.getElementById('pwInput').value === ADMIN_PW) {
     document.getElementById('lockScreen').style.display = 'none';
@@ -481,7 +481,7 @@ function checkPw() {
     document.getElementById('adminErr').style.display = 'block';
   }
 }
- 
+
 function renderVoterList() {
   const entries = Object.entries(allVotes).sort((a,b) => (b[1].ts||0) - (a[1].ts||0));
   document.getElementById('adminTitle').textContent = `${entries.length} votos registados`;
@@ -496,11 +496,10 @@ function renderVoterList() {
     </div>`;
   }).join('');
 }
- 
+
 buildForm();
 fetchVotes();
 setInterval(fetchVotes, 20000);
 </script>
 </body>
 </html>
- 
