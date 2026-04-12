@@ -204,7 +204,7 @@ header p { font-size: 0.8rem; color: rgba(255,255,255,0.75); }
     <div id="electivesForm"></div>
     <div class="sel-count" id="selCount">Seleciona entre <b>5</b> e <b>6</b> electives</div>
     <button class="submit-btn" id="submitBtn" onclick="submitVote()" disabled>Submeter preferências</button>
-    <p class="submit-note">Podes actualizar o teu voto submetendo novamente com o mesmo nome.</p>
+    <p class="submit-note">Podes seleccionar entre 5 e 7 electives. Podes actualizar o teu voto submetendo novamente com o mesmo nome.</p>
   </div>
   <div class="success-wrap" id="successWrap" style="display:none">
     <div class="success-icon">✓</div>
@@ -355,22 +355,22 @@ function buildForm() {
 function updateCount() {
   const checked = document.querySelectorAll('#electivesForm input:checked');
   const n = checked.length;
-  if (n > 6) { checked[n-1].checked = false; updateCount(); return; }
+  if (n > 7) { checked[n-1].checked = false; updateCount(); return; }
   const el = document.getElementById('selCount');
-  el.innerHTML = n >= 5 ? `<b>${n}</b> electives selecionadas ✓` : `Seleciona entre <b>5</b> e <b>6</b> electives (${n} selecionadas)`;
+  el.innerHTML = n >= 5 ? `<b>${n}</b> electives selecionadas ✓` : `Seleciona entre <b>5</b> e <b>7</b> electives (${n} selecionadas)`;
   updateBtn();
 }
 
 function updateBtn() {
   const n = document.querySelectorAll('#electivesForm input:checked').length;
   const name = document.getElementById('voterName').value.trim();
-  document.getElementById('submitBtn').disabled = !(n >= 5 && n <= 6 && name.length > 0);
+  document.getElementById('submitBtn').disabled = !(n >= 5 && n <= 7 && name.length > 0);
 }
 
 async function submitVote() {
   const checked = [...document.querySelectorAll('#electivesForm input:checked')].map(i => i.value);
   const name = document.getElementById('voterName').value.trim();
-  if (checked.length < 5 || checked.length > 6 || !name) return;
+  if (checked.length < 5 || checked.length > 7 || !name) return;
 
   const btn = document.getElementById('submitBtn');
   btn.disabled = true; btn.textContent = 'A guardar...';
