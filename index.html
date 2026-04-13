@@ -60,13 +60,22 @@ header p { font-size: 0.8rem; color: rgba(255,255,255,0.75); }
 
 .res-area { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: #c9a84c; padding: 0.85rem 0 0.3rem; border-top: 1px solid #e8e4dc; margin-top: 4px; }
 .res-area.first { border-top: none; padding-top: 0; margin-top: 0; }
-.res-row { margin: 0.4rem 0; }
+.res-row { margin: 0.4rem 0; cursor: pointer; border-radius: 6px; padding: 0.25rem 0.35rem; transition: background 0.15s; }
+.res-row:hover { background: #e8e4dc; }
+.res-row.open { background: #e8e4dc; }
 .res-meta { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; }
 .res-name { font-size: 0.8rem; color: #1a1a2e; line-height: 1.25; flex: 1; padding-right: 8px; }
+.res-right { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
 .res-count { font-family: 'Playfair Display', serif; font-size: 0.82rem; font-weight: 500; color: #1a3a6e; }
-.res-pct { font-size: 0.68rem; color: #6b7280; margin-left: 4px; }
-.bar-track { height: 5px; background: #e8e4dc; border-radius: 3px; overflow: hidden; }
+.res-pct { font-size: 0.68rem; color: #6b7280; }
+.res-chevron { font-size: 0.65rem; color: #9ca3af; transition: transform 0.2s; }
+.res-row.open .res-chevron { transform: rotate(180deg); }
+.bar-track { height: 5px; background: #e8e4dc; border-radius: 3px; overflow: hidden; margin-bottom: 0; }
 .bar-fill { height: 100%; border-radius: 3px; transition: width 0.5s ease; }
+.accordion-body { display: none; padding: 0.5rem 0 0.25rem 0.5rem; }
+.res-row.open .accordion-body { display: block; }
+.accordion-name { font-size: 0.75rem; color: #6b7280; padding: 0.15rem 0; display: flex; align-items: center; gap: 5px; }
+.accordion-name::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: #c9a84c; flex-shrink: 0; }
 .opens-badge { font-size: 0.6rem; font-weight: 500; padding: 0.1rem 0.35rem; border-radius: 10px; background: #dcfce7; color: #2d7a4f; margin-left: 6px; }
 .empty-state { padding: 2.5rem 0; text-align: center; color: #6b7280; font-size: 0.85rem; }
 .loading-state { padding: 2rem 0; text-align: center; color: #6b7280; font-size: 0.85rem; }
@@ -347,6 +356,18 @@ function getVoteCounts() {
   return counts;
 }
 
+function getVoterNames() {
+  const names = {};
+  ELECTIVES.forEach(e => names[e.name] = []);
+  Object.values(allVotes).forEach(v => {
+    if (v.selections) {
+      const fixed = fixSelections(v.selections);
+      fixed.forEach(s => { if (names[s] !== undefined) names[s].push(v.name); });
+    }
+  });
+  return names;
+}
+
 function updateCounters() {
   const total = Object.keys(allVotes).length;
   const counts = getVoteCounts();
@@ -424,8 +445,13 @@ function resetForm() {
   updateBtn();
 }
 
+function toggleAccordion(el) {
+  el.classList.toggle('open');
+}
+
 function renderResults() {
   const counts = getVoteCounts();
+  const voterNames = getVoterNames();
   const total = Object.keys(allVotes).length;
   const maxCount = Math.max(...Object.values(counts), THRESHOLD);
   const body = document.getElementById('resultsBody');
@@ -442,16 +468,24 @@ function renderResults() {
       .sort((a, b) => b.count - a.count);
     html += `<div class="res-area ${ai===0?'first':''}">${area}</div>`;
     items.forEach(e => {
+      if (e.count === 0) return;
       const pct = total > 0 ? Math.round((e.count / total) * 100) : 0;
       const barW = Math.round((e.count / maxCount) * 100);
       const color = e.count >= THRESHOLD ? '#2d7a4f' : e.count >= 10 ? '#c9a84c' : '#cbd5e1';
       const badge = e.count >= THRESHOLD ? `<span class="opens-badge">✓ abre</span>` : '';
-      html += `<div class="res-row">
+      const names = (voterNames[e.name] || []).sort();
+      const namesHtml = names.map(n => `<div class="accordion-name">${n}</div>`).join('');
+      html += `<div class="res-row" onclick="this.classList.toggle('open')">
         <div class="res-meta">
           <div class="res-name">${e.name}${badge}</div>
-          <div><span class="res-count">${e.count}</span><span class="res-pct">${pct}%</span></div>
+          <div class="res-right">
+            <span class="res-count">${e.count}</span>
+            <span class="res-pct">${pct}%</span>
+            <span class="res-chevron">▼</span>
+          </div>
         </div>
         <div class="bar-track"><div class="bar-fill" style="width:${barW}%;background:${color}"></div></div>
+        <div class="accordion-body">${namesHtml}</div>
       </div>`;
     });
   });
