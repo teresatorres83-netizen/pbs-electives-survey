@@ -236,7 +236,7 @@ header p { font-size: 0.8rem; color: rgba(255,255,255,0.75); }
     <div id="electivesForm"></div>
     <div class="sel-count" id="selCount">Seleciona o teu nome e as electives</div>
     <button class="submit-btn" id="submitBtn" onclick="submitVote()" disabled>Submeter preferências</button>
-    <p class="submit-note">EMBA: entre 4 e 7 electives · iMBA: entre 2 e 3 electives</p>
+    <p class="submit-note">EMBA: entre 4 e 7 electives · iMBA: entre 2 e 4 electives</p>
   </div>
   <div class="success-wrap" id="successWrap" style="display:none">
     <div class="success-icon">✓</div>
@@ -430,7 +430,7 @@ function isIMBA() {
 }
 
 function getLimits() {
-  return isIMBA() ? { min: 2, max: 3 } : { min: 4, max: 7 };
+  return isIMBA() ? { min: 2, max: 4 } : { min: 4, max: 7 };
 }
 
 function updateCount() {
