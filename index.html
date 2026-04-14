@@ -122,7 +122,7 @@ header p { font-size: 0.8rem; color: rgba(255,255,255,0.75); }
     <div class="error-banner" id="errorBanner">Erro ao guardar. Verifica a ligação e tenta novamente.</div>
     <div class="name-field">
       <label class="field-label">O teu nome *</label>
-      <select class="field-input" id="voterName" onchange="updateBtn()">
+      <select class="field-input" id="voterName" onchange="updateCount(); updateBtn()">
         <option value="">— Seleciona o teu nome —</option>
         <option>Agostinho Leandro de Teixeira Fernandes</option>
         <option>Ana Catarina da Costa Pereira Pinto</option>
@@ -234,9 +234,9 @@ header p { font-size: 0.8rem; color: rgba(255,255,255,0.75); }
       </select>
     </div>
     <div id="electivesForm"></div>
-    <div class="sel-count" id="selCount">Seleciona entre <b>4</b> e <b>7</b> electives</div>
+    <div class="sel-count" id="selCount">Seleciona o teu nome e as electives</div>
     <button class="submit-btn" id="submitBtn" onclick="submitVote()" disabled>Submeter preferências</button>
-    <p class="submit-note">Podes seleccionar entre 4 e 7 electives. Podes actualizar o teu voto submetendo novamente com o mesmo nome.</p>
+    <p class="submit-note">EMBA: entre 4 e 7 electives · iMBA: entre 2 e 3 electives</p>
   </div>
   <div class="success-wrap" id="successWrap" style="display:none">
     <div class="success-icon">✓</div>
@@ -422,25 +422,39 @@ function buildForm() {
   c.innerHTML = html;
 }
 
+const IMBA_NAMES = new Set(['Alejandra','Lexi Yurovchak','Bamidele','Domenica','Francisca','Giorgi Moistsrapishvili','Indu','Jeffrey','Joao','Laura','Liane','Liliana','Lucas Silva','Lucy','Mariana Almeida','Matthew','Olawale Ajayi','Omid Akbarian','Pedro','Penny','Riddin Chackalackal','Silvana','Stefany']);
+
+function isIMBA() {
+  const name = document.getElementById('voterName').value.trim();
+  return IMBA_NAMES.has(name);
+}
+
+function getLimits() {
+  return isIMBA() ? { min: 2, max: 3 } : { min: 4, max: 7 };
+}
+
 function updateCount() {
   const checked = document.querySelectorAll('#electivesForm input:checked');
   const n = checked.length;
-  if (n > 7) { checked[n-1].checked = false; updateCount(); return; }
+  const { min, max } = getLimits();
+  if (n > max) { checked[n-1].checked = false; updateCount(); return; }
   const el = document.getElementById('selCount');
-  el.innerHTML = n >= 4 ? `<b>${n}</b> electives selecionadas ✓` : `Seleciona entre <b>4</b> e <b>7</b> electives (${n} selecionadas)`;
+  el.innerHTML = n >= min ? `<b>${n}</b> electives selecionadas ✓` : `Seleciona entre <b>${min}</b> e <b>${max}</b> electives (${n} selecionadas)`;
   updateBtn();
 }
 
 function updateBtn() {
   const n = document.querySelectorAll('#electivesForm input:checked').length;
   const name = document.getElementById('voterName').value.trim();
-  document.getElementById('submitBtn').disabled = !(n >= 4 && n <= 7 && name.length > 0);
+  const { min, max } = getLimits();
+  document.getElementById('submitBtn').disabled = !(n >= min && n <= max && name.length > 0);
 }
 
 async function submitVote() {
   const checked = [...document.querySelectorAll('#electivesForm input:checked')].map(i => i.value);
   const name = document.getElementById('voterName').value.trim();
-  if (checked.length < 4 || checked.length > 7 || !name) return;
+  const { min, max } = getLimits();
+  if (checked.length < min || checked.length > max || !name) return;
 
   const btn = document.getElementById('submitBtn');
   btn.disabled = true; btn.textContent = 'A guardar...';
