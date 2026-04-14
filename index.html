@@ -188,7 +188,6 @@ header p { font-size: 0.8rem; color: rgba(255,255,255,0.75); }
         <option>Philippe André Carneiro Vaz</option>
         <option>Ricardo Fragoso</option>
         <option>Ricardo José Tavares Alves Rocha</option>
-        <option>Rui Filipe Caetano Marques</option>
         <option>Rui Miguel Costa Oliveira</option>
         <option>Samuel Sampaio Vieira</option>
         <option>Sara I. Alves de Sousa Rebelo</option>
@@ -468,7 +467,6 @@ function renderResults() {
       .sort((a, b) => b.count - a.count);
     html += `<div class="res-area ${ai===0?'first':''}">${area}</div>`;
     items.forEach(e => {
-      if (e.count === 0) return;
       const pct = total > 0 ? Math.round((e.count / total) * 100) : 0;
       const barW = Math.round((e.count / maxCount) * 100);
       const color = e.count >= THRESHOLD ? '#2d7a4f' : e.count >= 10 ? '#c9a84c' : '#cbd5e1';
